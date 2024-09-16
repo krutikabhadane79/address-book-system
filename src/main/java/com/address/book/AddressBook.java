@@ -126,4 +126,18 @@ public class AddressBook {
         }
         return flag == 1;
     }
+
+    public boolean deleteContact(String name) {
+        int flag = 0;
+        for(Details contact: contactList)
+        {
+            if(contact.getFirstName().equals(name))
+            {
+                contactList.remove(contact);
+                flag = 1;
+                break;
+            }
+        }
+        return flag == 1;
+    }
 }
