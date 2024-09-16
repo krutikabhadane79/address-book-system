@@ -6,10 +6,23 @@ import java.util.Scanner;
 public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
     public ArrayList<Details> contactList = new ArrayList<Details>();
+    public boolean isDuplicate(String firstName) {
+        for (Details contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addContact(){
         System.out.println("Enter the contact details.............");
         System.out.println("Enter the first name:");
         String firstName = sc.next();
+        if (isDuplicate(firstName)) {
+            System.out.println("A contact with the same first name already exists. Please enter a unique first name.");
+            return;
+        }
         System.out.println("Enter the last name:");
         String lastName = sc.next();
         System.out.println("Enter the address:");
@@ -27,6 +40,7 @@ public class AddressBook {
 
         Details contactDetails = new Details(firstName, lastName, address, city, state, zip, email, phoneNumber);
         contactList.add(new Details(firstName,lastName,address,city,state,zip,email,phoneNumber));
+        System.out.println("Contact added successfully");
         for(Details contact:contactList){
             System.out.println("First name: "+contact.getFirstName()+"\n"+
                     "Last name: "+contact.getLastName()+"\n"+
@@ -154,4 +168,6 @@ public class AddressBook {
         }
         return flag == 1;
     }
+
+
 }
