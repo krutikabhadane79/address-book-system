@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
-    public ArrayList<Details> contactList = new ArrayList<>();
+    public ArrayList<Details> contactList = new ArrayList<Details>();
     public void addContact(){
         System.out.println("Enter the contact details.............");
         System.out.println("Enter the first name:");
@@ -26,7 +26,7 @@ public class AddressBook {
         String email = sc.next();
 
         Details contactDetails = new Details(firstName, lastName, address, city, state, zip, email, phoneNumber);
-        contactList.add(contactDetails);
+        contactList.add(new Details(firstName,lastName,address,city,state,zip,email,phoneNumber));
         for(Details contact:contactList){
             System.out.println("First name: "+contact.getFirstName()+"\n"+
                     "Last name: "+contact.getLastName()+"\n"+
@@ -36,6 +36,20 @@ public class AddressBook {
                     "Email: "+contact.getEmail()+"\n"+
                     "Contact no: "+contact.getPhoneNumber()+"\n"+
                     "Zip: "+contact.getZip());
+        }
+
+    }
+
+    public void displayRecord()
+    {
+        if (contactList.isEmpty())
+        {
+            System.out.println("No Records!!!");
+        }
+        else {
+            for (Details contact : contactList) {
+                System.out.println(contact);
+            }
         }
 
     }
